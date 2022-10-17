@@ -10,27 +10,40 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         body {
-            background-image: url('https://cdn.pixabay.com/photo/2013/07/13/10/24/board-157165_960_720.png');
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSRtPcL-zy0LzN0ywy6zuCCCpyob04HXYFHw&usqp=CAU');
             background-size: cover;
+            
             background-repeat: no-repeat;
         }
+
+        input[type=text] {
+  width: 20%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+  width: 70%;
+  position: static;
+
+}
     </style>
 </head>
 
 <body>
 
     <div class="all"
-        style="border: 2px solid black; justify-content: center; border-radius: 25px; padding: 10px; width: 50%; margin-left: 25%; background-color: rgb(231, 119, 119); color: aliceblue; box-shadow: 2px 4px 6px 3px inset; margin-top: 10%; height: auto;">
-        <form onsubmit="postTodo(); return false">
+        style="border: 2px solid black; justify-content: center; border-radius: 25px; padding: 10px; width: 50%; margin-left: 25%; background-color: rgb(76, 76, 243); color: aliceblue; box-shadow: 2px 4px 6px 3px inset; margin-top: 10%; height: auto;">
+        <form onsubmit="postTodo(); return false" style="justify-content: center;">
             <h1>Todo App with server</h1>
-
-            todo: <input id="todo" type="text" required>
+<legend>  todo: </legend>
+          <input id="todo" type="text" required>
             <button type="submit">Add</button>
         </form>
-        <button onclick="getAllTodos()">Refresh</button>
-        <button onclick="deleteAllTodos()">Delete All</button>
+       <div class="a" style="display: flex; justify-content: flex-end; align-items: center;"> <button onclick="getAllTodos()" >Refresh</button>
+        <button onclick="deleteAllTodos()">Delete All</button></div>
 
-        <h5 id="message" style="height:20px; color: red;"> </h5>
+        <h5 id="message" style="height:20px; font-family: Brush Script
+        ; color: rgb(8, 8, 0); font-weight: bold; font-size: medium; font-style: oblique;"> </h5>
 
         <h3 id="result"> </h3>
     </div>
@@ -82,13 +95,19 @@
                     document.querySelector("#result").innerHTML = ""
 
                     response.data.data.map(eachTodo => {
-                        document.querySelector("#result").innerHTML += `<div style="border:1px solid black; border-radius:10px; margin-top:5px; padding:10px;"><span id='span-${eachTodo._id}'> ${eachTodo.text} </span><form id='form-${eachTodo._id}' style="display: none;" onsubmit="updateTodo('${eachTodo._id}'); return false"> 
+                        document.querySelector("#result").innerHTML += `<div style="background-color: #fff; color:black;outline: 5px solid red;
+        outline-offset: -10px;  border:1px solid black; border-radius:10px; margin-top:5px; padding:20px;  "><span id='span-${eachTodo._id}'> ${eachTodo.text} </span><form id='form-${eachTodo._id}' style="display: none;" onsubmit="updateTodo('${eachTodo._id}'); return false"> 
                                 <input id='input-${eachTodo._id}' value='${eachTodo.text}'  />
                                 <button type="submit">Update</button>
                                 
                             </form>&nbsp;&nbsp;<i class="fa fa-close" onclick="deleteTodo('${eachTodo._id}')" id='delete-${eachTodo._id}' style="margin-bottom:5%;font-size:48px;color:red; margin-left:70%;"></i> 
-                            <button onclick="editTodo('${eachTodo._id}')" id='edit-${eachTodo._id}'> Edit </button></div><br>`
-                        // document.querySelector("#result").innerHTML += `<span id='span-${eachTodo._id}'> ${eachTodo.text} </span>`;
+                            <button onclick="editTodo('${eachTodo._id}')" id='edit-${eachTodo._id}'> Edit </button><input type="checkbox" id='check-${eachTodo._id}' style="margin-left:5px;" ></div><br>`
+                      
+                    //         c=document.querySelector("#check-${eachTodo._id}").check
+                    //   if(c=true){
+                    //     +document.querySelector("#${eachTodo.text}").css("  text-decoration: line-through;")
+                    //   }
+                            // document.querySelector("#result").innerHTML += `<span id='span-${eachTodo._id}'> ${eachTodo.text} </span>`;
                         // document.querySelector("#result").innerHTML +=
                         //     `<form id='form-${eachTodo._id}' style="display: none;" onsubmit="updateTodo('${eachTodo._id}'); return false"> 
                         //         <input id='input-${eachTodo._id}' value='${eachTodo.text}'  />

@@ -27,7 +27,7 @@ app.post('/todo', (req, res) => {
             console.log(saved);
 
             res.send({
-                message: "your todo is saved"
+                message: "Todo Is Saved"
             })
         } else {
             res.status(500).send({
@@ -41,8 +41,9 @@ app.get('/todos', (req, res) => {
     todoModel.find({}, (err, data) => {
         if (!err) {
             res.send({
-                message: "here is you todo list",
-                data: data
+                message: "Here Is Your All Todo",
+                data: data.reverse()
+                
             })
         } else {
             res.status(500).send({
@@ -66,7 +67,7 @@ app.put('/todo/:id', async (req, res) => {
         console.log('updated: ', data);
 
         res.send({
-            message: "todo is updated successfully",
+            message: "Todo Is Updated Successfully",
             data: data
         })
 
@@ -83,7 +84,7 @@ app.delete('/todos', (req, res) => {
     todoModel.deleteMany({}, (err, data) => {
         if (!err) {
             res.send({
-                message: "All Todo has been deleted successfully",
+                message: "All Todo has been DELETED successfully",
             })
         } else {
             res.status(500).send({
@@ -100,7 +101,7 @@ app.delete('/todo/:id', (req, res) => {
 
             if (deletedData.deletedCount !== 0) {
                 res.send({
-                    message: "Todo has been deleted successfully",
+                    message: "Todo has been Deleted Successfully",
                 })
             } else {
                 res.send({
